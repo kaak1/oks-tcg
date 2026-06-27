@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 480" role="img" aria-label="Trading card box placeholder">
+  <defs><linearGradient id="g" x1="94" x2="426" y1="112" y2="362" gradientUnits="userSpaceOnUse"><stop stop-color="#f6c647"/><stop offset=".46" stop-color="#111827"/><stop offset="1" stop-color="#6d28d9"/></linearGradient></defs>
+  <rect width="520" height="480" fill="#060914"/>
+  <path d="M98 162l164-74 160 74v190l-160 74-164-74V162Z" fill="url(#g)" stroke="#f6c647" stroke-width="5"/>
+  <path d="M98 162l164 74 160-74M262 236v190" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="4"/>
+  <rect x="148" y="184" width="112" height="58" rx="14" fill="#05050a" opacity=".64"/>
+  <text x="204" y="222" text-anchor="middle" font-family="Arial" font-size="20" font-weight="900" fill="#fff">OKS</text>
+  <text x="260" y="452" text-anchor="middle" font-family="Arial" font-size="26" font-weight="900" fill="#f6c647">CARD BOX</text>
+</svg>

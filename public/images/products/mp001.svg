@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 480" role="img" aria-label="RM35 mystery pack placeholder">
+  <defs><linearGradient id="g" x1="90" x2="420" y1="30" y2="430" gradientUnits="userSpaceOnUse"><stop stop-color="#35240a"/><stop offset=".48" stop-color="#080b16"/><stop offset="1" stop-color="#6d28d9"/></linearGradient></defs>
+  <rect width="520" height="480" fill="#060914"/>
+  <circle cx="392" cy="90" r="150" fill="#7c3aed" opacity=".16"/>
+  <path d="M156 58h208l34 42v310l-34 28H156l-34-28V100l34-42Z" fill="url(#g)" stroke="#f6c647" stroke-width="5"/>
+  <rect x="155" y="114" width="210" height="232" rx="28" fill="#0b1022" stroke="#fff" stroke-opacity=".09"/>
+  <path d="M211 230h72l-26 76 76-110h-66l24-60-80 94Z" fill="#f6c647"/>
+  <text x="260" y="158" text-anchor="middle" font-family="Arial" font-size="30" font-weight="900" fill="#fff">OKS-TCG</text>
+  <text x="260" y="386" text-anchor="middle" font-family="Arial" font-size="28" font-weight="900" fill="#f6c647">RM35 PACK</text>
+</svg>

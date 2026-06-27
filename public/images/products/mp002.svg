@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 480" role="img" aria-label="AR IR mystery pack placeholder">
+  <defs><linearGradient id="g" x1="90" x2="420" y1="30" y2="430" gradientUnits="userSpaceOnUse"><stop stop-color="#581c87"/><stop offset=".5" stop-color="#0b1022"/><stop offset="1" stop-color="#f6c647"/></linearGradient></defs>
+  <rect width="520" height="480" fill="#060914"/>
+  <circle cx="130" cy="110" r="120" fill="#f6c647" opacity=".12"/>
+  <path d="M146 62h228l30 38v308l-30 30H146l-30-30V100l30-38Z" fill="url(#g)" stroke="#c084fc" stroke-width="5"/>
+  <rect x="152" y="118" width="216" height="226" rx="30" fill="#070a14" stroke="#fff" stroke-opacity=".1"/>
+  <circle cx="260" cy="226" r="72" fill="#fff" opacity=".08"/>
+  <path d="M184 258c52-86 102-86 154 0" fill="none" stroke="#f6c647" stroke-width="15" opacity=".88"/>
+  <text x="260" y="158" text-anchor="middle" font-family="Arial" font-size="30" font-weight="900" fill="#fff">AR / IR</text>
+  <text x="260" y="386" text-anchor="middle" font-family="Arial" font-size="26" font-weight="900" fill="#f6c647">POPULAR PACK</text>
+</svg>

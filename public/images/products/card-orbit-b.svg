@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 308" role="img" aria-label="Generic purple trading card">
+  <defs>
+    <linearGradient id="h" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#0f172a"/>
+      <stop offset=".5" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#fde68a"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="208" height="296" rx="18" fill="#070a14" stroke="#a855f7" stroke-width="3"/>
+  <rect x="22" y="26" width="176" height="172" rx="14" fill="url(#h)"/>
+  <path d="M110 54l18 36 40 6-29 28 7 39-36-18-36 18 7-39-29-28 40-6 18-36Z" fill="#fff" opacity=".17"/>
+  <rect x="24" y="218" width="172" height="16" rx="8" fill="#fff" opacity=".18"/>
+  <rect x="24" y="246" width="116" height="12" rx="6" fill="#fff" opacity=".12"/>
+</svg>

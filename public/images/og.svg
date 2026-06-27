@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="OKS-TCG preview">
+  <defs>
+    <radialGradient id="p" cx="76%" cy="25%" r="54%">
+      <stop stop-color="#7c3aed" stop-opacity=".65"/>
+      <stop offset="1" stop-color="#05050a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" x2="1">
+      <stop stop-color="#fff1a8"/>
+      <stop offset=".5" stop-color="#f6c647"/>
+      <stop offset="1" stop-color="#b8860b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#05050a"/>
+  <rect width="1200" height="630" fill="url(#p)"/>
+  <path d="M0 550C200 480 320 590 500 520c180-70 280-190 700-80v190H0Z" fill="#091025"/>
+  <g transform="translate(780 95) rotate(8)">
+    <rect width="250" height="360" rx="28" fill="#0b1022" stroke="#f6c647" stroke-width="4"/>
+    <rect x="28" y="34" width="194" height="222" rx="20" fill="url(#gold)" opacity=".78"/>
+    <path d="M78 148h98l-32 96 92-134h-82l28-74-104 112Z" fill="#05050a" opacity=".8"/>
+    <text x="125" y="308" text-anchor="middle" font-family="Arial" font-size="32" font-weight="900" fill="#fff">OKS-TCG</text>
+  </g>
+  <text x="86" y="214" font-family="Arial" font-size="78" font-weight="900" fill="#fff">OKS-TCG</text>
+  <text x="86" y="292" font-family="Arial" font-size="44" font-weight="800" fill="url(#gold)">MYSTERY PACKS · SINGLE CARDS · PSA</text>
+  <text x="86" y="360" font-family="Arial" font-size="28" font-weight="700" fill="#d9d3f0">OVERKISS MY TOYS</text>
+</svg>

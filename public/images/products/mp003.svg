@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 480" role="img" aria-label="SAR PSA premium mystery pack placeholder">
+  <defs><linearGradient id="g" x1="85" x2="430" y1="40" y2="438" gradientUnits="userSpaceOnUse"><stop stop-color="#fff3ad"/><stop offset=".34" stop-color="#312e81"/><stop offset="1" stop-color="#05050a"/></linearGradient></defs>
+  <rect width="520" height="480" fill="#060914"/>
+  <circle cx="388" cy="130" r="130" fill="#a855f7" opacity=".18"/>
+  <path d="M138 58h244l28 44v304l-28 34H138l-28-34V102l28-44Z" fill="url(#g)" stroke="#f6c647" stroke-width="6"/>
+  <rect x="154" y="118" width="212" height="224" rx="30" fill="#05050a" opacity=".82" stroke="#fff" stroke-opacity=".1"/>
+  <path d="M260 134l25 54 58 8-42 40 10 58-51-28-51 28 10-58-42-40 58-8 25-54Z" fill="#f6c647" opacity=".9"/>
+  <text x="260" y="374" text-anchor="middle" font-family="Arial" font-size="30" font-weight="900" fill="#fff7c4">SAR / PSA</text>
+  <text x="260" y="406" text-anchor="middle" font-family="Arial" font-size="18" font-weight="900" fill="#f6c647">ADVANCED PACK</text>
+</svg>

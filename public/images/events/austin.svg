@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 452" role="img" aria-label="Austin event placeholder">
+  <defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#05050a"/><stop offset=".55" stop-color="#2e1065"/><stop offset="1" stop-color="#f6c647"/></linearGradient></defs>
+  <rect width="520" height="452" fill="url(#g)"/>
+  <rect x="92" y="100" width="336" height="236" rx="34" fill="#05050a" opacity=".72" stroke="#f6c647" stroke-width="4"/>
+  <path d="M170 234h70l-26 74 78-108h-62l24-58-84 92Z" fill="#f6c647"/>
+  <text x="310" y="226" text-anchor="middle" font-family="Arial" font-size="46" font-weight="900" fill="#fff">Austin</text>
+  <text x="310" y="270" text-anchor="middle" font-family="Arial" font-size="20" font-weight="900" fill="#c4b5fd">LIVE MARKET</text>
+</svg>

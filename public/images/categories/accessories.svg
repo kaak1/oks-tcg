@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 390" role="img" aria-label="Boxes and accessories category">
+  <defs><linearGradient id="g" x1="86" x2="366" y1="118" y2="316" gradientUnits="userSpaceOnUse"><stop stop-color="#f6c647"/><stop offset=".5" stop-color="#111827"/><stop offset="1" stop-color="#6d28d9"/></linearGradient></defs>
+  <rect width="460" height="390" fill="#060914"/>
+  <path d="M92 145l140-64 136 64v162l-136 64-140-64V145Z" fill="url(#g)" stroke="#f6c647" stroke-width="4"/>
+  <path d="M92 145l140 64 136-64M232 209v162" stroke="#fff" stroke-opacity=".22" stroke-width="4"/>
+  <rect x="142" y="162" width="86" height="48" rx="12" fill="#05050a" opacity=".66"/>
+  <text x="185" y="194" text-anchor="middle" font-family="Arial" font-size="18" font-weight="900" fill="#fff">BOX</text>
+  <text x="230" y="354" text-anchor="middle" font-family="Arial" font-size="24" font-weight="900" fill="#fff">ACCESSORIES</text>
+</svg>

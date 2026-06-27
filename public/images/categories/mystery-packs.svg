@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 390" role="img" aria-label="Mystery packs category">
+  <defs><linearGradient id="g" x1="80" x2="370" y1="28" y2="354" gradientUnits="userSpaceOnUse"><stop stop-color="#f6c647"/><stop offset=".42" stop-color="#111827"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
+  <rect width="460" height="390" fill="#060914"/>
+  <circle cx="360" cy="72" r="112" fill="#7c3aed" opacity=".18"/>
+  <path d="M150 48h160l26 34v236l-26 26H150l-26-26V82l26-34Z" fill="url(#g)" stroke="#f6c647" stroke-width="4"/>
+  <rect x="152" y="102" width="156" height="164" rx="22" fill="#080b16" opacity=".88"/>
+  <path d="M200 190h56l-20 62 62-92h-52l20-48-66 78Z" fill="#f6c647"/>
+  <text x="230" y="305" text-anchor="middle" font-family="Arial" font-size="24" font-weight="900" fill="#fff">MYSTERY</text>
+</svg>

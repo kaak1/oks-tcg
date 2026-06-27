@@ -1,0 +1,147 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { Minus, Plus, ShoppingBag } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+import type { Product } from "@/data/products";
+import { formatRM, generateWhatsAppOrderLink } from "@/lib/whatsapp";
+import { cn } from "@/lib/utils";
+
+type ProductCardProps = {
+  product: Product;
+  index?: number;
+};
+
+const badgeStyles: Record<Product["badge"], string> = {
+  HOT: "bg-red-500/16 text-red-100 border-red-300/30",
+  LIMITED: "bg-yellow-300/16 text-yellow-100 border-yellow-200/36",
+  NEW: "bg-cyan-400/14 text-cyan-100 border-cyan-200/30",
+  RARE: "bg-purple-400/18 text-purple-100 border-purple-200/34",
+};
+
+export function ProductCard({ product, index = 0 }: ProductCardProps) {
+  const [quantity, setQuantity] = useState(1);
+  const reduceMotion = useReducedMotion();
+  const isSoldOut = product.stock <= 0;
+  const stockLabel = isSoldOut ? "售罄" : product.stock === 1 ? "仅剩1件" : `库存 ${product.stock} 件`;
+
+  const changeQuantity = (delta: number) => {
+    setQuantity((current) => {
+      const next = current + delta;
+      return Math.min(Math.max(next, 1), Math.max(product.stock, 1));
+    });
+  };
+
+  const buyNow = () => {
+    if (isSoldOut) {
+      return;
+    }
+
+    window.open(generateWhatsAppOrderLink(product, quantity), "_blank", "noopener,noreferrer");
+  };
+
+  return (
+    <motion.article
+      data-testid={`product-${product.id}`}
+      initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.24 }}
+      transition={{ delay: index * 0.05, duration: 0.48, ease: "easeOut" }}
+      className="glow-border group flex h-full flex-col overflow-hidden rounded-[24px] border border-white/12 bg-[#080b16]/82 shadow-[0_26px_70px_rgba(0,0,0,0.28)]"
+    >
+      <div className="relative m-3 aspect-[1.08] overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02]">
+        <Image
+          src={product.image}
+          alt={product.imageAlt}
+          width={520}
+          height={480}
+          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+        />
+        <span
+          className={cn(
+            "animate-badge absolute left-3 top-3 rounded-full border px-3 py-1 text-[11px] font-black tracking-[0.16em]",
+            badgeStyles[product.badge],
+          )}
+        >
+          {product.badge}
+        </span>
+      </div>
+
+      <div className="flex flex-1 flex-col px-4 pb-4">
+        <div className="mb-4">
+          <h3 className="min-h-12 text-lg font-black leading-snug text-white">{product.name}</h3>
+          <p className="mt-1 text-xs font-bold uppercase tracking-[0.18em] text-white/45">SKU {product.sku}</p>
+        </div>
+
+        <div className="mb-4 flex items-end justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold text-white/46">价格</p>
+            <p className="text-2xl font-black text-[var(--gold)]">RM{formatRM(product.price)}</p>
+          </div>
+          <span
+            className={cn(
+              "rounded-full border px-3 py-1 text-xs font-bold",
+              isSoldOut
+                ? "border-red-300/25 bg-red-500/10 text-red-100"
+                : product.stock === 1
+                  ? "border-yellow-200/32 bg-yellow-300/10 text-yellow-100"
+                  : "border-emerald-200/24 bg-emerald-400/10 text-emerald-100",
+            )}
+          >
+            {stockLabel}
+          </span>
+        </div>
+
+        <div className="mb-4 flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-2">
+          <span className="px-2 text-sm font-bold text-white/70">数量</span>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              data-testid={`decrease-${product.id}`}
+              onClick={() => changeQuantity(-1)}
+              disabled={quantity <= 1 || isSoldOut}
+              aria-label={`减少 ${product.name} 数量`}
+              className="grid h-9 w-9 place-items-center rounded-full border border-white/12 bg-white/7 text-white transition hover:bg-white/12 disabled:opacity-35"
+            >
+              <Minus className="h-4 w-4" aria-hidden="true" />
+            </button>
+            <span
+              data-testid={`quantity-${product.id}`}
+              className="grid h-9 min-w-9 place-items-center rounded-full bg-black/28 px-3 text-sm font-black text-white"
+            >
+              {isSoldOut ? 0 : quantity}
+            </span>
+            <button
+              type="button"
+              data-testid={`increase-${product.id}`}
+              onClick={() => changeQuantity(1)}
+              disabled={quantity >= product.stock || isSoldOut}
+              aria-label={`增加 ${product.name} 数量`}
+              className="grid h-9 w-9 place-items-center rounded-full border border-white/12 bg-white/7 text-white transition hover:bg-white/12 disabled:opacity-35"
+            >
+              <Plus className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          data-testid={`buy-${product.id}`}
+          data-order-link={isSoldOut ? "" : generateWhatsAppOrderLink(product, quantity)}
+          onClick={buyNow}
+          disabled={isSoldOut}
+          className={cn(
+            "mt-auto inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-5 text-sm font-black transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200",
+            isSoldOut
+              ? "bg-white/8 text-white/38"
+              : "gold-button bg-gradient-to-r from-[#f6c647] to-[#f0a928] text-[#171007] shadow-[0_0_28px_rgba(246,198,71,0.22)] hover:-translate-y-0.5",
+          )}
+        >
+          <ShoppingBag className="h-4 w-4" aria-hidden="true" />
+          {isSoldOut ? "已售罄" : "立即购买"}
+        </button>
+      </div>
+    </motion.article>
+  );
+}

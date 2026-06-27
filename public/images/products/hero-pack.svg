@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 560" role="img" aria-label="OKS-TCG premium mystery pack">
+  <defs>
+    <linearGradient id="body" x1="58" x2="368" y1="38" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#242033"/>
+      <stop offset=".34" stop-color="#0d1020"/>
+      <stop offset=".72" stop-color="#070812"/>
+      <stop offset="1" stop-color="#030408"/>
+    </linearGradient>
+    <linearGradient id="side" x1="334" x2="398" y1="88" y2="486" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3a2a0e"/>
+      <stop offset=".45" stop-color="#11131e"/>
+      <stop offset="1" stop-color="#05050a"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="64" x2="360" y1="54" y2="508" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff4b8"/>
+      <stop offset=".42" stop-color="#f6c647"/>
+      <stop offset="1" stop-color="#9d6b12"/>
+    </linearGradient>
+    <linearGradient id="foil" x1="92" x2="344" y1="96" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff" stop-opacity=".42"/>
+      <stop offset=".18" stop-color="#f6c647" stop-opacity=".1"/>
+      <stop offset=".42" stop-color="#ffffff" stop-opacity=".04"/>
+      <stop offset=".62" stop-color="#a855f7" stop-opacity=".16"/>
+      <stop offset=".82" stop-color="#ffffff" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="goldGlow" cx="50%" cy="45%" r="58%">
+      <stop stop-color="#f6c647" stop-opacity=".24"/>
+      <stop offset=".58" stop-color="#f6c647" stop-opacity=".07"/>
+      <stop offset="1" stop-color="#f6c647" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softShadow" x="-28%" y="-22%" width="156%" height="154%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="30" stdDeviation="24" flood-color="#000000" flood-opacity=".5"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="11" flood-color="#f6c647" flood-opacity=".14"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="218" cy="521" rx="126" ry="26" fill="#000" opacity=".36"/>
+  <circle cx="216" cy="284" r="168" fill="url(#goldGlow)"/>
+
+  <g filter="url(#softShadow)">
+    <path d="M78 54h254l50 46v370l-34 38H84l-36-36V98l30-44Z" fill="url(#body)" stroke="url(#gold)" stroke-width="4"/>
+    <path d="M332 54l50 46v370l-34 38-18-28V91L332 54Z" fill="url(#side)" opacity=".92"/>
+    <path d="M78 54h254l-28 52H112L78 54Z" fill="#f6c647" opacity=".2"/>
+    <path d="M84 508h264l-34-44H118L84 508Z" fill="#f6c647" opacity=".1"/>
+
+    <path d="M82 84h268" stroke="#fff7c8" stroke-width="2" opacity=".28"/>
+    <path d="M73 120h292M72 456h286" stroke="#f6c647" stroke-width="2" opacity=".26"/>
+    <path d="M93 82c28 15 55 15 82 0 28 15 55 15 83 0 27 15 54 15 81 0" fill="none" stroke="#fff7c8" stroke-width="2" opacity=".18"/>
+    <path d="M96 474c26-14 52-14 78 0 27-14 54-14 82 0 27-14 54-14 81 0" fill="none" stroke="#fff7c8" stroke-width="2" opacity=".15"/>
+
+    <rect x="82" y="110" width="248" height="336" rx="30" fill="#0a0f20" stroke="#ffffff" stroke-opacity=".1"/>
+    <rect x="98" y="128" width="216" height="292" rx="24" fill="url(#foil)" opacity=".88"/>
+    <path d="M104 144h196" stroke="#fff" stroke-width="1.4" opacity=".12"/>
+    <path d="M110 396h184" stroke="#f6c647" stroke-width="1.4" opacity=".18"/>
+
+    <rect x="113" y="136" width="186" height="58" rx="18" fill="#05050a" opacity=".56" stroke="#f6c647" stroke-opacity=".16"/>
+    <text x="206" y="173" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="900" fill="#fff6cf">OKS-TCG</text>
+
+    <path d="M136 241c48-72 92-72 140 0" fill="none" stroke="#f6c647" stroke-width="13" opacity=".82"/>
+    <path d="M150 255c38-48 74-48 112 0" fill="none" stroke="#ffffff" stroke-width="7" opacity=".12"/>
+    <circle cx="206" cy="248" r="50" fill="#f6c647" opacity=".08"/>
+    <path d="M178 221h57l-19 56 58-82h-48l18-48-66 74Z" fill="url(#gold)" opacity=".82"/>
+
+    <text x="206" y="374" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="900" fill="#f6c647">MYSTERY PACK</text>
+    <text x="206" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="4" fill="#ffffff" opacity=".62">COLLECTOR SERIES</text>
+    <path d="M112 424h188" stroke="#fff" stroke-width="1.2" opacity=".12"/>
+
+    <path d="M105 122l174 298" stroke="#ffffff" stroke-width="22" opacity=".035"/>
+    <path d="M150 112l174 298" stroke="#f6c647" stroke-width="9" opacity=".045"/>
+  </g>
+</svg>

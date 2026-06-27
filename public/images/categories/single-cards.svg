@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 390" role="img" aria-label="Single cards category">
+  <defs><linearGradient id="g" x1="120" x2="330" y1="40" y2="340" gradientUnits="userSpaceOnUse"><stop stop-color="#22d3ee"/><stop offset=".5" stop-color="#a855f7"/><stop offset="1" stop-color="#f6c647"/></linearGradient></defs>
+  <rect width="460" height="390" fill="#060914"/>
+  <rect x="126" y="38" width="180" height="266" rx="24" fill="#080b16" stroke="#f6c647" stroke-width="4" transform="rotate(-7 216 171)"/>
+  <rect x="176" y="70" width="180" height="266" rx="24" fill="#080b16" stroke="#67e8f9" stroke-width="4" transform="rotate(8 266 203)"/>
+  <rect x="198" y="105" width="136" height="136" rx="16" fill="url(#g)" transform="rotate(8 266 173)"/>
+  <text x="230" y="344" text-anchor="middle" font-family="Arial" font-size="25" font-weight="900" fill="#fff">SINGLE CARDS</text>
+</svg>
