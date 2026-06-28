@@ -1,6 +1,6 @@
 import type { Product } from "@/data/products";
 
-export const WHATSAPP_NUMBER = "60103138771";
+export const WHATSAPP_NUMBER = "601169128764";
 
 export function formatRM(amount: number) {
   return amount.toFixed(2);
