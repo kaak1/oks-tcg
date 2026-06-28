@@ -7,7 +7,11 @@ export function formatRM(amount: number) {
 }
 
 export function generateWhatsAppOrderLink(product: Product, quantity: number) {
-  const safeQuantity = Math.max(1, Math.floor(quantity));
+  if (product.stock <= 0) {
+    return "";
+  }
+
+  const safeQuantity = Math.min(Math.max(1, Math.floor(quantity)), product.stock);
   const total = product.price * safeQuantity;
   const message = `你好，我想购买以下商品：
 

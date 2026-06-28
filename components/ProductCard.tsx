@@ -24,12 +24,16 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
   const reduceMotion = useReducedMotion();
   const isSoldOut = product.stock <= 0;
-  const stockLabel = isSoldOut ? "售罄" : product.stock === 1 ? "仅剩1件" : `库存 ${product.stock} 件`;
+  const stockLabel = isSoldOut ? "已售罄" : product.stock === 1 ? "仅剩 1 件" : `现货 ${product.stock} 件`;
 
   const changeQuantity = (delta: number) => {
+    if (isSoldOut) {
+      return;
+    }
+
     setQuantity((current) => {
       const next = current + delta;
-      return Math.min(Math.max(next, 1), Math.max(product.stock, 1));
+      return Math.min(Math.max(next, 1), product.stock);
     });
   };
 
@@ -38,7 +42,11 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       return;
     }
 
-    window.open(generateWhatsAppOrderLink(product, quantity), "_blank", "noopener,noreferrer");
+    const orderLink = generateWhatsAppOrderLink(product, quantity);
+
+    if (orderLink) {
+      window.open(orderLink, "_blank", "noopener,noreferrer");
+    }
   };
 
   return (
@@ -48,15 +56,21 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.24 }}
       transition={{ delay: index * 0.05, duration: 0.48, ease: "easeOut" }}
-      className="glow-border group flex h-full flex-col overflow-hidden rounded-[24px] border border-white/12 bg-[#080b16]/82 shadow-[0_26px_70px_rgba(0,0,0,0.28)]"
+      className={cn(
+        "glow-border group flex h-full flex-col overflow-hidden rounded-[24px] border border-white/12 bg-[#080b16]/82 shadow-[0_26px_70px_rgba(0,0,0,0.28)]",
+        isSoldOut && "border-white/10 bg-[#080b16]/72",
+      )}
     >
-      <div className="relative m-3 aspect-[1.08] overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02]">
+      <div className="relative m-3 aspect-square overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-3 sm:p-4">
         <Image
           src={product.image}
           alt={product.imageAlt}
           width={520}
           height={480}
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          className={cn(
+            "h-full w-full object-contain transition duration-500",
+            isSoldOut ? "brightness-75 saturate-[0.9]" : "group-hover:scale-105",
+          )}
         />
         <span
           className={cn(
@@ -76,8 +90,15 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
 
         <div className="mb-4 flex items-end justify-between gap-3">
           <div>
-            <p className="text-xs font-semibold text-white/46">价格</p>
-            <p className="text-2xl font-black text-[var(--gold)]">RM{formatRM(product.price)}</p>
+            <p className="text-xs font-semibold text-white/46">{isSoldOut ? "状态" : "价格"}</p>
+            <p
+              className={cn(
+                "text-2xl font-black",
+                isSoldOut ? "text-red-100" : "text-[var(--gold)]",
+              )}
+            >
+              {isSoldOut ? "已售罄" : `RM${formatRM(product.price)}`}
+            </p>
           </div>
           <span
             className={cn(
@@ -101,8 +122,9 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               data-testid={`decrease-${product.id}`}
               onClick={() => changeQuantity(-1)}
               disabled={quantity <= 1 || isSoldOut}
+              aria-disabled={quantity <= 1 || isSoldOut}
               aria-label={`减少 ${product.name} 数量`}
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/12 bg-white/7 text-white transition hover:bg-white/12 disabled:opacity-35"
+              className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-white/12 bg-white/7 text-white transition hover:bg-white/12 disabled:cursor-not-allowed disabled:border-white/8 disabled:bg-white/[0.04] disabled:text-white/34"
             >
               <Minus className="h-4 w-4" aria-hidden="true" />
             </button>
@@ -117,8 +139,9 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               data-testid={`increase-${product.id}`}
               onClick={() => changeQuantity(1)}
               disabled={quantity >= product.stock || isSoldOut}
+              aria-disabled={quantity >= product.stock || isSoldOut}
               aria-label={`增加 ${product.name} 数量`}
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/12 bg-white/7 text-white transition hover:bg-white/12 disabled:opacity-35"
+              className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-white/12 bg-white/7 text-white transition hover:bg-white/12 disabled:cursor-not-allowed disabled:border-white/8 disabled:bg-white/[0.04] disabled:text-white/34"
             >
               <Plus className="h-4 w-4" aria-hidden="true" />
             </button>
@@ -131,10 +154,11 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           data-order-link={isSoldOut ? "" : generateWhatsAppOrderLink(product, quantity)}
           onClick={buyNow}
           disabled={isSoldOut}
+          aria-disabled={isSoldOut}
           className={cn(
             "mt-auto inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-5 text-sm font-black transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-200",
             isSoldOut
-              ? "bg-white/8 text-white/38"
+              ? "cursor-not-allowed border border-red-200/20 bg-red-500/12 text-red-50 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
               : "gold-button bg-gradient-to-r from-[#f6c647] to-[#f0a928] text-[#171007] shadow-[0_0_28px_rgba(246,198,71,0.22)] hover:-translate-y-0.5",
           )}
         >
