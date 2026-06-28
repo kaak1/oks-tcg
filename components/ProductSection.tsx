@@ -33,7 +33,7 @@ export function ProductSection({ activeCategory, onCategorySelect }: ProductSect
   };
 
   return (
-    <section id="products" className="section-pad py-14 md:py-20">
+    <section id="products" data-product-section className="section-pad py-14 md:py-20">
       <div className="section-inner">
         <div className="mb-7 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
