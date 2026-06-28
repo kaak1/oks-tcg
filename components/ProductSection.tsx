@@ -18,11 +18,15 @@ export function ProductSection({ activeCategory, onCategorySelect }: ProductSect
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const filteredProducts = useMemo(() => {
-    if (activeCategory === "all") {
-      return products;
+    // Hidden IDs
+    const hiddenIds = ["sc001", "psa001", "bx001"];
+    let filtered = products.filter((p) => !hiddenIds.includes(p.id));
+
+    if (activeCategory !== "all") {
+      filtered = filtered.filter((product) => product.category === activeCategory);
     }
 
-    return products.filter((product) => product.category === activeCategory);
+    return filtered;
   }, [activeCategory]);
 
   const scrollProducts = (direction: "left" | "right") => {
@@ -40,11 +44,11 @@ export function ProductSection({ activeCategory, onCategorySelect }: ProductSect
             <p className="mb-3 text-xs font-black uppercase tracking-[0.26em] text-yellow-200/65">Best Sellers</p>
             <h2 className="text-3xl font-black text-white md:text-5xl">热销推荐</h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-white/62 md:text-base">
-              精选现货、限量盲包及人气收藏卡
+              多款现货盲包、单卡、评级卡与卡盒周边
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="hidden flex-wrap items-center gap-2 md:flex">
             <button
               type="button"
               data-testid="toggle-product-layout"
@@ -77,13 +81,13 @@ export function ProductSection({ activeCategory, onCategorySelect }: ProductSect
           </div>
         </div>
 
-        <div className="scrollbar-hide -mx-4 mb-6 flex gap-2 overflow-x-auto px-6 pb-1 md:mx-0 md:px-0">
+        <div className="scrollbar-hide -mx-4 mb-6 flex flex-wrap gap-2 overflow-x-auto px-6 pb-1 md:mx-0 md:px-0">
           <button
             type="button"
             data-testid="filter-all"
             onClick={() => onCategorySelect("all")}
             className={cn(
-              "min-h-10 shrink-0 whitespace-nowrap rounded-full border px-4 text-sm font-bold transition",
+              "min-h-9 shrink-0 whitespace-nowrap rounded-full border px-3 text-[13px] font-bold transition md:min-h-10 md:px-4 md:text-sm",
               activeCategory === "all"
                 ? "border-yellow-300/42 bg-yellow-300/14 text-yellow-50"
                 : "border-white/12 bg-white/6 text-white/62 hover:bg-white/10 hover:text-white",
@@ -98,7 +102,7 @@ export function ProductSection({ activeCategory, onCategorySelect }: ProductSect
               data-testid={`filter-${category.id}`}
               onClick={() => onCategorySelect(category.id)}
               className={cn(
-                "min-h-10 shrink-0 whitespace-nowrap rounded-full border px-4 text-sm font-bold transition",
+                "min-h-9 shrink-0 whitespace-nowrap rounded-full border px-3 text-[13px] font-bold transition md:min-h-10 md:px-4 md:text-sm",
                 activeCategory === category.id
                   ? "border-yellow-300/42 bg-yellow-300/14 text-yellow-50"
                   : "border-white/12 bg-white/6 text-white/62 hover:bg-white/10 hover:text-white",
@@ -109,27 +113,36 @@ export function ProductSection({ activeCategory, onCategorySelect }: ProductSect
           ))}
         </div>
 
-        {showGrid ? (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredProducts.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} />
-            ))}
-          </div>
-        ) : (
-          <div
-            ref={scrollRef}
-            className="scrollbar-hide -mx-4 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-4 md:mx-0 md:px-0 md:scroll-px-0"
-          >
-            {filteredProducts.map((product, index) => (
-              <div
-                key={product.id}
-                className="w-[calc(100vw-48px)] max-w-[420px] shrink-0 snap-start snap-always scroll-ml-8 sm:w-[318px] sm:max-w-[342px] md:scroll-ml-0"
-              >
-                <ProductCard product={product} index={index} />
-              </div>
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-2 gap-3 md:hidden">
+          {filteredProducts.map((product, index) => (
+            <div key={product.id} id={product.id === "slab-pack-399" ? "slab-pack-399" : undefined}>
+              <ProductCard product={product} index={index} />
+            </div>
+          ))}
+        </div>
+
+        <div className="hidden md:block">
+          {showGrid ? (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredProducts.map((product, index) => (
+                <div key={product.id} id={product.id === "slab-pack-399" ? "slab-pack-399" : undefined}>
+                  <ProductCard product={product} index={index} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div
+              ref={scrollRef}
+              className="scrollbar-hide flex snap-x gap-4 overflow-x-auto pb-4"
+            >
+              {filteredProducts.map((product, index) => (
+                <div key={product.id} id={product.id === "slab-pack-399" ? "slab-pack-399" : undefined} className="min-w-[318px] max-w-[342px] snap-start">
+                  <ProductCard product={product} index={index} />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

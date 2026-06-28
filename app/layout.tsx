@@ -41,7 +41,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body>{children}</body>
+      <body className="bg-[#050710] text-white">
+        <div className="pb-24 md:pb-0">{children}</div>
+      </body>
     </html>
   );
 }

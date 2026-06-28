@@ -37,7 +37,7 @@ export function OrderSteps() {
           <h2 className="text-3xl font-black text-white md:text-5xl">简单四步完成下单</h2>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-4">
+        <div className="grid gap-3 md:gap-4 md:grid-cols-4">
           {steps.map((step, index) => {
             const Icon = step.icon;
 
@@ -48,16 +48,16 @@ export function OrderSteps() {
                 whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ delay: index * 0.08, duration: 0.45, ease: "easeOut" }}
-                className="glass-panel relative overflow-hidden rounded-[24px] p-5"
+                className="glass-panel relative overflow-hidden rounded-[20px] p-4 md:rounded-[24px] md:p-5"
               >
-                <span className="absolute right-5 top-4 text-5xl font-black text-white/[0.035]">
+                <span className="absolute right-4 top-3 text-4xl font-black text-white/[0.035] md:right-5 md:top-4 md:text-5xl">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <div className="mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-yellow-300/12 text-[var(--gold)]">
-                  <Icon className="h-6 w-6" aria-hidden="true" />
+                <div className="mb-3 grid h-10 w-10 place-items-center rounded-xl bg-yellow-300/12 text-[var(--gold)] md:mb-5 md:h-12 md:w-12 md:rounded-2xl">
+                  <Icon className="h-5 w-5 md:h-6 md:w-6" aria-hidden="true" />
                 </div>
-                <h3 className="text-lg font-black text-white">{step.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-white/58">{step.description}</p>
+                <h3 className="text-base font-black text-white md:text-lg">{step.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-white/58 md:mt-3">{step.description}</p>
               </motion.div>
             );
           })}

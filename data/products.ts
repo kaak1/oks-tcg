@@ -20,6 +20,17 @@ export type Product = {
 
 export const products: Product[] = [
   {
+    id: "slab-pack-399",
+    sku: "RM399-SLAB",
+    name: "OKS RM399 Slab Mystery Pack",
+    category: "graded-card",
+    price: 399,
+    stock: 55,
+    badge: "LIMITED",
+    image: "/images/banners/slab-pack-399-product.png",
+    imageAlt: "OKS RM399 Slab Mystery Pack",
+  },
+  {
     id: "oks-v1",
     sku: "OKS-V1",
     name: "OKS V1 100% HIT 神秘盲包",

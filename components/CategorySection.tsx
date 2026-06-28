@@ -3,7 +3,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
 import { categories } from "@/data/categories";
 import type { ProductCategory } from "@/data/products";
 import { cn, scrollToSection } from "@/lib/utils";
@@ -13,17 +12,11 @@ type CategorySectionProps = {
   onCategorySelect: (category: ProductCategory) => void;
 };
 
-export function CategorySection({ activeCategory, onCategorySelect }: CategorySectionProps) {
+export function CategorySection({
+  activeCategory,
+  onCategorySelect,
+}: CategorySectionProps) {
   const reduceMotion = useReducedMotion();
-  const scrollerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      scrollerRef.current?.scrollTo({ left: 0, behavior: "auto" });
-    });
-
-    return () => window.cancelAnimationFrame(frame);
-  }, []);
 
   const selectCategory = (category: ProductCategory) => {
     onCategorySelect(category);
@@ -31,13 +24,27 @@ export function CategorySection({ activeCategory, onCategorySelect }: CategorySe
   };
 
   return (
-    <section id="categories" className="section-pad pb-7 pt-8 md:pb-20 md:pt-10">
+    <section
+      id="categories"
+      data-category-section
+      className="section-pad pb-7 pt-8 md:pb-20 md:pt-10"
+    >
       <div className="section-inner">
         <div className="mb-7 flex items-end justify-between gap-4">
           <div>
-            <p className="mb-3 text-xs font-black uppercase tracking-[0.26em] text-yellow-200/65">Collections</p>
-            <h2 className="text-3xl font-black text-white md:text-5xl">热门分类</h2>
+            <p className="mb-3 text-xs font-black uppercase tracking-[0.26em] text-yellow-200/65">
+              Collections
+            </p>
+
+            <h2 className="text-3xl font-black text-white md:text-5xl">
+              热门分类
+            </h2>
+
+            <p className="mt-3 max-w-xs text-sm leading-6 text-white/62 md:max-w-xl">
+              盲包、单卡、评级卡和卡盒周边，一眼找到要收藏的商品。
+            </p>
           </div>
+
           <button
             type="button"
             onClick={() => scrollToSection("products")}
@@ -48,10 +55,7 @@ export function CategorySection({ activeCategory, onCategorySelect }: CategorySe
           </button>
         </div>
 
-        <div
-          ref={scrollerRef}
-          className="scrollbar-hide -mx-4 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-3 md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0 md:scroll-px-0"
-        >
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
           {categories.map((category, index) => {
             const isActive = activeCategory === category.id;
 
@@ -61,35 +65,46 @@ export function CategorySection({ activeCategory, onCategorySelect }: CategorySe
                 type="button"
                 onClick={() => selectCategory(category.id)}
                 initial={reduceMotion ? false : { opacity: 0, y: 22 }}
-                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ delay: index * 0.06, duration: 0.45, ease: "easeOut" }}
-                whileHover={reduceMotion ? undefined : { y: -7, rotateX: 3, rotateY: -3 }}
+                whileInView={
+                  reduceMotion ? undefined : { opacity: 1, y: 0 }
+                }
+                viewport={{ once: true, amount: 0.12 }}
+                transition={{
+                  delay: index * 0.06,
+                  duration: 0.45,
+                  ease: "easeOut",
+                }}
+                whileHover={reduceMotion ? undefined : { y: -5 }}
                 className={cn(
-                  "glow-border holo-surface group relative min-h-[280px] w-[calc(100vw-48px)] max-w-[380px] shrink-0 snap-start snap-always scroll-ml-8 overflow-hidden rounded-[24px] border p-4 text-left transition sm:w-[310px] md:w-auto md:max-w-none md:min-w-0 md:scroll-ml-0",
+                  "group relative flex flex-col overflow-hidden rounded-[18px] border p-2.5 text-left transition md:rounded-[22px] md:p-3",
                   isActive
                     ? "border-yellow-300/42 bg-yellow-300/10"
                     : "border-white/12 bg-white/[0.045] hover:border-yellow-200/28",
                 )}
               >
-                <div className="relative mb-5 aspect-[1.18] overflow-hidden rounded-[18px] border border-white/10 bg-[#080b16]">
+                <div className="relative mb-3 aspect-[4/5] w-full overflow-hidden rounded-[14px] bg-[#080b16] md:rounded-[18px]">
                   <Image
                     src={category.image}
                     alt={category.imageAlt}
                     width={460}
-                    height={390}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    height={575}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
-                <div className="flex items-end justify-between gap-3">
+
+                <div className="flex w-full items-center justify-between gap-2 px-1 pb-1">
                   <div className="min-w-0">
-                    <h3 className="text-xl font-black text-white">{category.name}</h3>
-                    <p className="mt-1 break-words text-xs font-black leading-tight tracking-[0.16em] text-yellow-100/58">
+                    <h3 className="text-sm font-black leading-tight text-white md:text-lg">
+                      {category.name}
+                    </h3>
+
+                    <p className="mt-1 text-[9px] font-black leading-tight tracking-[0.1em] text-yellow-100/55 md:text-[11px]">
                       {category.englishName}
                     </p>
                   </div>
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-yellow-300/28 bg-yellow-300/12 text-[var(--gold)] transition group-hover:rotate-12 group-hover:bg-yellow-300/18">
-                    <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
+
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-yellow-300/28 bg-yellow-300/10 text-[var(--gold)] transition group-hover:rotate-12 group-hover:bg-yellow-300/18">
+                    <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                   </span>
                 </div>
               </motion.button>
