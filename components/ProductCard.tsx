@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Minus, Plus, ShoppingBag } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import type { Product } from "@/data/products";
 import { formatRM, generateWhatsAppOrderLink } from "@/lib/whatsapp";
@@ -152,6 +153,14 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </div>
         </div>
 
+        {product.id === "slab-pack-399" && (
+          <Link
+            href="/products/slab-pack-399"
+            className="mb-2 inline-flex min-h-9 w-full items-center justify-center gap-1.5 rounded-full border border-white/12 bg-white/[0.04] px-3 text-xs font-black text-white transition hover:border-white/24 hover:text-white md:min-h-12 md:gap-2 md:px-5 md:text-sm"
+          >
+            查看卡池
+          </Link>
+        )}
         <button
           type="button"
           data-testid={`buy-${product.id}`}
