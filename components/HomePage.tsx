@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ModelPromoBanner } from "@/components/ModelPromoBanner";
 import type { ProductCategory } from "@/data/products";
 import { AboutSection } from "./AboutSection";
 import { CategorySection } from "./CategorySection";
@@ -16,18 +17,30 @@ import { TrustBar } from "./TrustBar";
 import { WhatsAppButton } from "./WhatsAppButton";
 
 export function HomePage() {
-  const [activeCategory, setActiveCategory] = useState<ProductCategory | "all">("all");
+  const [activeCategory, setActiveCategory] =
+    useState<ProductCategory | "all">("all");
 
   return (
     <main className="page-shell">
       <ParticleBackground />
+
       <div className="content-layer">
         <Navbar />
         <Hero />
         <TrustBar />
+        <ModelPromoBanner />
         <SlabBanner />
-        <CategorySection activeCategory={activeCategory} onCategorySelect={setActiveCategory} />
-        <ProductSection activeCategory={activeCategory} onCategorySelect={setActiveCategory} />
+
+        <CategorySection
+          activeCategory={activeCategory}
+          onCategorySelect={setActiveCategory}
+        />
+
+        <ProductSection
+          activeCategory={activeCategory}
+          onCategorySelect={setActiveCategory}
+        />
+
         <OrderSteps />
         <AboutSection />
         <FAQSection />
