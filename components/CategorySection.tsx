@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 import { categories } from "@/data/categories";
 import type { ProductCategory } from "@/data/products";
 import { cn, scrollToSection } from "@/lib/utils";
@@ -14,6 +15,15 @@ type CategorySectionProps = {
 
 export function CategorySection({ activeCategory, onCategorySelect }: CategorySectionProps) {
   const reduceMotion = useReducedMotion();
+  const scrollerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      scrollerRef.current?.scrollTo({ left: 0, behavior: "auto" });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   const selectCategory = (category: ProductCategory) => {
     onCategorySelect(category);
@@ -21,7 +31,7 @@ export function CategorySection({ activeCategory, onCategorySelect }: CategorySe
   };
 
   return (
-    <section id="categories" className="section-pad pb-14 pt-8 md:pb-20 md:pt-10">
+    <section id="categories" className="section-pad pb-7 pt-8 md:pb-20 md:pt-10">
       <div className="section-inner">
         <div className="mb-7 flex items-end justify-between gap-4">
           <div>
@@ -38,7 +48,10 @@ export function CategorySection({ activeCategory, onCategorySelect }: CategorySe
           </button>
         </div>
 
-        <div className="scrollbar-hide -mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-3 md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
+        <div
+          ref={scrollerRef}
+          className="scrollbar-hide -mx-4 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-3 md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0 md:scroll-px-0"
+        >
           {categories.map((category, index) => {
             const isActive = activeCategory === category.id;
 
@@ -53,7 +66,7 @@ export function CategorySection({ activeCategory, onCategorySelect }: CategorySe
                 transition={{ delay: index * 0.06, duration: 0.45, ease: "easeOut" }}
                 whileHover={reduceMotion ? undefined : { y: -7, rotateX: 3, rotateY: -3 }}
                 className={cn(
-                  "glow-border holo-surface group relative min-h-[280px] min-w-[76vw] snap-start overflow-hidden rounded-[24px] border p-4 text-left transition sm:min-w-[310px] md:min-w-0",
+                  "glow-border holo-surface group relative min-h-[280px] w-[calc(100vw-48px)] max-w-[380px] shrink-0 snap-start snap-always scroll-ml-8 overflow-hidden rounded-[24px] border p-4 text-left transition sm:w-[310px] md:w-auto md:max-w-none md:min-w-0 md:scroll-ml-0",
                   isActive
                     ? "border-yellow-300/42 bg-yellow-300/10"
                     : "border-white/12 bg-white/[0.045] hover:border-yellow-200/28",
@@ -69,9 +82,11 @@ export function CategorySection({ activeCategory, onCategorySelect }: CategorySe
                   />
                 </div>
                 <div className="flex items-end justify-between gap-3">
-                  <div>
+                  <div className="min-w-0">
                     <h3 className="text-xl font-black text-white">{category.name}</h3>
-                    <p className="mt-1 text-xs font-black tracking-[0.2em] text-yellow-100/58">{category.englishName}</p>
+                    <p className="mt-1 break-words text-xs font-black leading-tight tracking-[0.16em] text-yellow-100/58">
+                      {category.englishName}
+                    </p>
                   </div>
                   <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-yellow-300/28 bg-yellow-300/12 text-[var(--gold)] transition group-hover:rotate-12 group-hover:bg-yellow-300/18">
                     <ArrowUpRight className="h-5 w-5" aria-hidden="true" />

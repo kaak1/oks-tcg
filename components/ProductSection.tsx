@@ -33,7 +33,7 @@ export function ProductSection({ activeCategory, onCategorySelect }: ProductSect
   };
 
   return (
-    <section id="products" data-product-section className="section-pad py-14 md:py-20">
+    <section id="products" data-product-section className="section-pad pb-14 pt-8 md:py-20">
       <div className="section-inner">
         <div className="mb-7 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
@@ -77,13 +77,13 @@ export function ProductSection({ activeCategory, onCategorySelect }: ProductSect
           </div>
         </div>
 
-        <div className="scrollbar-hide mb-6 flex gap-2 overflow-x-auto pb-1">
+        <div className="scrollbar-hide -mx-4 mb-6 flex gap-2 overflow-x-auto px-6 pb-1 md:mx-0 md:px-0">
           <button
             type="button"
             data-testid="filter-all"
             onClick={() => onCategorySelect("all")}
             className={cn(
-              "min-h-10 shrink-0 rounded-full border px-4 text-sm font-bold transition",
+              "min-h-10 shrink-0 whitespace-nowrap rounded-full border px-4 text-sm font-bold transition",
               activeCategory === "all"
                 ? "border-yellow-300/42 bg-yellow-300/14 text-yellow-50"
                 : "border-white/12 bg-white/6 text-white/62 hover:bg-white/10 hover:text-white",
@@ -98,7 +98,7 @@ export function ProductSection({ activeCategory, onCategorySelect }: ProductSect
               data-testid={`filter-${category.id}`}
               onClick={() => onCategorySelect(category.id)}
               className={cn(
-                "min-h-10 shrink-0 rounded-full border px-4 text-sm font-bold transition",
+                "min-h-10 shrink-0 whitespace-nowrap rounded-full border px-4 text-sm font-bold transition",
                 activeCategory === category.id
                   ? "border-yellow-300/42 bg-yellow-300/14 text-yellow-50"
                   : "border-white/12 bg-white/6 text-white/62 hover:bg-white/10 hover:text-white",
@@ -118,10 +118,13 @@ export function ProductSection({ activeCategory, onCategorySelect }: ProductSect
         ) : (
           <div
             ref={scrollRef}
-            className="scrollbar-hide -mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-4 md:mx-0 md:px-0"
+            className="scrollbar-hide -mx-4 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 pb-4 md:mx-0 md:px-0 md:scroll-px-0"
           >
             {filteredProducts.map((product, index) => (
-              <div key={product.id} className="min-w-[82vw] max-w-[342px] snap-start sm:min-w-[318px]">
+              <div
+                key={product.id}
+                className="w-[calc(100vw-48px)] max-w-[420px] shrink-0 snap-start snap-always scroll-ml-8 sm:w-[318px] sm:max-w-[342px] md:scroll-ml-0"
+              >
                 <ProductCard product={product} index={index} />
               </div>
             ))}
